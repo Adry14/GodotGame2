@@ -1,0 +1,168 @@
+[gd_scene load_steps=8 format=3 uid="uid://b8xu2k7ba0aj5"]
+
+[ext_resource type="Script" uid="uid://dvy8mr6rgx4v" path="res://menu.gd" id="1_lti8b"]
+[ext_resource type="Texture2D" uid="uid://0gdtnoifxk1e" path="res://Pixel Adventure 1/Free/Background.png" id="2_4hy44"]
+[ext_resource type="Texture2D" uid="uid://eg2nq886b3jn" path="res://Pixel Adventure 1/Free/moneda4.png" id="3_ytr4m"]
+[ext_resource type="Texture2D" uid="uid://dqnq3wsv21r3c" path="res://Pixel Adventure 1/Free/Main Characters/Mask Dude/Idle (32x32).png" id="4_l48gv"]
+
+[sub_resource type="Animation" id="Animation_4hy44"]
+resource_name = "Idle"
+length = 0.8
+loop_mode = 1
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32), Rect2(192, 0, 32, 32), Rect2(224, 0, 32, 32)]
+}
+
+[sub_resource type="Animation" id="Animation_ytr4m"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_l48gv"]
+_data = {
+&"Idle": SubResource("Animation_4hy44"),
+&"RESET": SubResource("Animation_ytr4m")
+}
+
+[node name="Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_lti8b")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -192.0
+offset_top = -52.0
+offset_right = 192.0
+offset_bottom = 52.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StartGameButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Iniciar Juego"
+
+[node name="QuitButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Salir"
+
+[node name="Background" type="Sprite2D" parent="."]
+z_index = -2
+position = Vector2(576, 320)
+scale = Vector2(0.6, 0.59259254)
+texture = ExtResource("2_4hy44")
+
+[node name="Moneda4" type="Sprite2D" parent="."]
+position = Vector2(114.75, 127.25)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda5" type="Sprite2D" parent="."]
+position = Vector2(991.9999, 112)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda6" type="Sprite2D" parent="."]
+position = Vector2(176.00018, 471.99997)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda7" type="Sprite2D" parent="."]
+position = Vector2(536, 464)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda8" type="Sprite2D" parent="."]
+position = Vector2(560, 104.00006)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda9" type="Sprite2D" parent="."]
+position = Vector2(832, 463.99997)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda10" type="Sprite2D" parent="."]
+position = Vector2(1024, 344)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="Moneda11" type="Sprite2D" parent="."]
+position = Vector2(224.00012, 312.00003)
+scale = Vector2(0.16999999, 0.186)
+texture = ExtResource("3_ytr4m")
+hframes = 2
+vframes = 2
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="Node2D" type="Node2D" parent="CharacterBody2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CharacterBody2D/Node2D"]
+libraries = {
+&"": SubResource("AnimationLibrary_l48gv")
+}
+autoplay = "Idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="CharacterBody2D/Node2D"]
+position = Vector2(568, 240.00002)
+scale = Vector2(2.0681825, 1.875)
+texture = ExtResource("4_l48gv")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 464.0
+offset_top = 136.0
+offset_right = 564.0
+offset_bottom = 164.0
+scale = Vector2(2, 2)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+text = "Mask Island"
+
+[connection signal="pressed" from="VBoxContainer/StartGameButton" to="." method="_on_start_game_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

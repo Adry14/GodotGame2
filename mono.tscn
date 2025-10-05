@@ -1,0 +1,55 @@
+[gd_scene load_steps=6 format=3 uid="uid://baukhixge0xsx"]
+
+[ext_resource type="Script" uid="uid://d4njuikjetfu8" path="res://monoControles.gd" id="1_trhd0"]
+[ext_resource type="Texture2D" uid="uid://ckaj1y7ac010s" path="res://Pixel Adventure 1/Free/Main Characters/Mask Dude/Run (32x32).png" id="2_trhd0"]
+
+[sub_resource type="Animation" id="Animation_trhd0"]
+resource_name = "idle"
+loop_mode = 1
+step = 0.25
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("animacion/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(0, 0, 32, 32), Rect2(32, 0, 32, 32), Rect2(64, 0, 32, 32), Rect2(96, 0, 32, 32), Rect2(128, 0, 32, 32), Rect2(160, 0, 32, 32), Rect2(192, 0, 32, 32), Rect2(224, 0, 32, 32), Rect2(256, 0, 32, 32), Rect2(256, 0, 32, 32)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mswvo"]
+_data = {
+&"idle": SubResource("Animation_trhd0")
+}
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trhd0"]
+height = 32.0
+
+[node name="mono" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_trhd0")
+speed = 4.0
+jump_power = 8.5
+
+[node name="Camera2D" type="Camera2D" parent="."]
+offset = Vector2(0, -15)
+zoom = Vector2(3, 3)
+
+[node name="animacion" type="Node2D" parent="."]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="animacion"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_mswvo")
+}
+autoplay = "idle"
+
+[node name="Sprite2D" type="Sprite2D" parent="animacion"]
+texture = ExtResource("2_trhd0")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_trhd0")
